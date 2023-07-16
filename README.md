@@ -1,3 +1,11 @@
-# Algorithms
+<samp>
+ Algorithms
 
-## Is this repository i'll compile my studies about algorithms using C, Javascript, Rust and much more.
+ In this repository I'll compile my studies about algorithms using C, Javascript, Rust, and much more.
+
+ - Binary Search
+ - Bubble Sort
+
+ source:
+ 
+</samp>
