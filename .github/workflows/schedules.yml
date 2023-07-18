@@ -1,8 +1,8 @@
 name: Update README after Team Member Added
 
 on:
-  organization:
-    member_added:
+  # organization:
+  #  member_added:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
