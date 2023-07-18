@@ -1,0 +1,42 @@
+name: Update README after Team Member Added
+
+on:
+  organization:
+    member_added:
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  update_readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Run Script
+        run: |
+          python3 - <<EOF
+          import re
+
+          with open('README.md', 'r') as file:
+              readme_content = file.read()
+
+          team_members = re.findall(r'- (\w+)', readme_content)
+
+          team_members.append("NEW_MEMBER")
+
+          updated_content = "# Team Members\n\n"
+          updated_content += "\n".join(f"- {member}" for member in team_members)
+
+          with open('README.md', 'w') as file:
+              file.write(updated_content)
+          EOF
+
+      - name: Commit Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -a -m "Updating README.md"
+          git push
+
